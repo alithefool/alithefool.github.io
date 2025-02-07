@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex`s portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%; /* Set height to 100% of the viewport */
+    }
+
+    body {
+        min-height: 100vh; /* Ensures the body is at least 100% of the viewport height */
+        display: flex;
+        justify-content: center; /* Optional: centers content horizontally */
+        align-items: center; /* Optional: centers content vertically */
+        background-color: lightblue; /* Optional: background color to see the effect */
+    }
+</style>
+<body>
+    <div class="scanlines"></div>
+    <div class="background"></div>
+    <div class="container">
+    <div class="bar">
+        <span class="bar_content">
+            Film as dream, film as music. No art passes our conscience in the way film does, and goes directly to our feelings, deep down into the dark rooms of our souls.  //  All truly strong people are kind.  //  A man with outward courage dares to die; a man with inner courage dares to live.  //  No matter how old you are, no matter what job you have, everyone has a future  //
+        </span>
+    </div>
+    <br>
+    <br>
+    <header><h1>Contact Me</h1></header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="About.html">About me!</a>
+        <a href="Projects.html">My projects</a>
+        <a href="Curriculum.html">Curriculum</a>
+        <a href="Contact.html">Contact</a>
+    </nav>
+    <section id="Contact">
+        <form   action="https://formspree.io/f/xqkrvjko" method="POST">
+            <label for="name">Your Name:</label><br>
+            <input type="text" id="name" name="name" required><br>
+
+            <label for="email">Your Email:</label><br>
+            <input type="email" id="email" name="email" required><br>
+
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" required></textarea><br>
+
+            <input type="submit" value="Send Message">
+        </form>
+    </section>
+    <footer></footer>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex's portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .project-container {
+            border: 3px solid #00bcd4;
+            border-radius: 5px;
+            padding: 20px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .project-container:hover {
+            background-color: #f0f0f0;
+        }
+
+        .project-content {
+            display: none;
+            padding: 10px 0;
+        }
+
+        .project-container.active .project-content {
+            display: block;
+        }
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%; /* Set height to 100% of the viewport */
+        }
+
+        body {
+            min-height: 100vh; /* Ensures the body is at least 100% of the viewport height */
+            display: flex;
+            justify-content: center; /* Optional: centers content horizontally */
+            align-items: center; /* Optional: centers content vertically */
+            background-color: lightblue; /* Optional: background color to see the effect */
+        }
+    </style>
+</head>
+<body>
+    <div class="scanlines"></div>
+    <div class="background"></div>
+    <div class="container">
+    <div class="bar">
+        <span class="bar_content">
+            Film as dream, film as music. No art passes our conscience in the way film does, and goes directly to our feelings, deep down into the dark rooms of our souls.  //  All truly strong people are kind.  //  A man with outward courage dares to die; a man with inner courage dares to live.  //  No matter how old you are, no matter what job you have, everyone has a future  //
+        </span>
+    </div>
+    <br>
+    <header><h1>My Projects</h1></header>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="About.html">About me!</a>
+        <a href="Projects.html">My projects</a>
+        <a href="Curriculum.html">Curriculum</a>
+        <a href="Contact.html">Contact</a>
+    </nav>
+
+    <section>
+        <div class="project-container">
+            <h2>My GitHub</h2>
+            <div class="project-content">
+                <p>A repository of all my projects!</p>
+                <!-- GitHub link -->
+                <p>
+                    <a href="https://github.com/alithefool" target="_blank">Visit my GitHub profile</a>
+                </p>
+            </div>
+        </div>
+        
+        <div class="project-container">
+            <h2>Rotating ASCII Cube Animation</h2>
+            <div class="project-content">
+                <p>
+                    This project showcases an animated 3D ASCII representation of rotating cubes rendered directly in the terminal. Using simple 3D projection techniques and a z-buffer algorithm, the cubes appear to rotate in 3D space, creating a fascinating depth effect.
+                </p>
+                <p>
+                    <strong>Key Features:</strong>
+                    <ul>
+                        <li>Multiple rotating cubes with different sizes and positions.</li>
+                        <li>ASCII art surfaces represented by characters like <code>@, $, ~, #, ;, +</code>.</li>
+                        <li>Real-time animation with smooth updates in the terminal.</li>
+                        <li>Cross-platform compatibility for Unix-like systems and Windows.</li>
+                    </ul>
+                </p>
+                <p>
+                    <strong>How It Works:</strong> The program projects 3D cube vertices to 2D screen coordinates using trigonometric transformations. Rotation angles control the cubes' movement around the X, Y, and Z axes, and a z-buffer ensures proper depth representation.
+                </p>
+                <p>
+                    <strong>Tech Stack:</strong> Written in C with ANSI escape codes for terminal rendering.
+                </p>
+                <p>
+                    Check it out on GitHub: 
+                    <a href="https://github.com/alithefool/ASCII-cubespin" target="_blank">
+                        ASCII-cubespin
+                    </a>
+                </p>
+            </div>
+        </div>
+        
+
+        <div class="project-container">
+            <h2>Custom Rules Cellular Automata</h2>
+            <div class="project-content">
+                <p>
+                    This project is an enhanced version of Conway's Game of Life, written in C, with customizable rules that allow users to define how cells evolve over time. It provides a flexible framework for experimenting with different cellular automaton rules, offering insight into how varying conditions influence the behavior of the grid and the emergence of patterns.
+                </p>
+                <p>
+                    <strong>Key Features:</strong>
+                    <ul>
+                        <li>Classic Conway's Game of Life implementation with custom evolution rules.</li>
+                        <li>Ability to modify birth and survival conditions.</li>
+                        <li>Configurable grid size and customizable neighborhood definitions.</li>
+                        <li>Command-line interface for easy rule modifications.</li>
+                        <li>Efficient C implementation for fast simulations, even with large grids.</li>
+                    </ul>
+                </p>
+                <p>
+                    <strong>How It Works:</strong> Users can define their own set of rules for the simulation, modifying how cells "live" or "die" based on the number of neighbors and customizable conditions. The grid boundaries and neighborhood definitions are also fully adjustable, making it possible to simulate a wide variety of scenarios.
+                </p>
+                <p>
+                    <strong>Tech Stack:</strong> Written in C with a modular structure for grid manipulation, rule management, and visualization.
+                </p>
+                <p>
+                    Check it out on GitHub: 
+                    <a href="https://github.com/alithefool/Celular-automata" target="_blank">
+                        Cellular Automata Project
+                    </a>
+                </p>
+            </div>
+        </div>
+        
+    </section>
+
+    <footer>
+
+    </footer>
+    <script>
+        const projectContainers = document.querySelectorAll('.project-container');
+
+        projectContainers.forEach(container => {
+            container.addEventListener('click', () => {
+                container.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

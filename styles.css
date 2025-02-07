@@ -17,7 +17,7 @@
 body {
     height: 100%; /* Ensure the body fills the height of the viewport */
     margin: 0; /* Remove default margin */
-    font-family: 'Neuropol', sans-serif; 
+    font-family: 'Neuropol', sans-serif;
     background: url('assets/background.jpg') no-repeat center center fixed;
     background-size: cover;
     filter: saturate(50%) brightness(120%);

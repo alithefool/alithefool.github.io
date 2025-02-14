@@ -393,3 +393,35 @@ c
 .wipe-layer.active {
     clip-path: inset(0 0 0 0);
 }
+
+nav a {
+    display: inline-block;
+}
+
+nav .hamburger {
+    display: none;
+    font-size: 30px;
+    cursor: pointer;
+}
+/
+@media (max-width: 768px) {
+    nav a {
+        display: none; 
+        width: 100%; 
+        text-align: center;
+        padding: 1em;
+        background: #6c95b3;
+    }
+
+    nav a:hover {
+        background: #a8c9ff;
+    }
+
+    nav .hamburger {
+        display: block; 
+    }
+
+    nav.active a {
+        display: block; 
+    }
+}

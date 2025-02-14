@@ -276,6 +276,13 @@ c
     animation: noise-anim-2 3s infinite linear alternate-reverse;
 }
 
+#gameCanvas {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+}
 
 .full-size-game {
     width: 100vw;
@@ -298,6 +305,15 @@ c
     border-radius: 12px;
     display: block;
     object-fit: contain;  
+}
+
+.canvas-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
 #game-of-life {
@@ -326,10 +342,9 @@ c
 .gol-controls {
     display: flex;
     justify-content: center;
-    gap: 10px;
+    gap: 15px;
     margin: 20px 0;
-    position: relative;
-    z-index: 1;  
+    flex-wrap: wrap;
 }
 
 .gol-controls button {
@@ -360,6 +375,7 @@ c
     position: relative;  
     z-index: 1; 
 }
+
 
 .wipe-layer {
     position: absolute;

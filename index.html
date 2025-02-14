@@ -32,41 +32,40 @@
 
 
 
-        <section id="projects">
-                <div class="gol-title">Conway's Game of Life</div>
+<section id="projects" style="display: flex; flex-direction: column; align-items: center;">
+    <div class="gol-title">Conway's Game of Life</div>
 
-                <div class="canvas-container">
-                    <canvas id="gameCanvas" width="1000" height="1000"></canvas>
-                </div>
+    <div class="canvas-container" style="display: flex; justify-content: center; width: 100%; max-width: 800px; margin: 0 auto;">
+        <canvas id="gameCanvas" width="800" height="800" style="width: 100%; height: auto;"></canvas>
+    </div>
 
-                <div class="gol-controls">
-                    <button onclick="handlePatternClick('random')">Random</button>
-                    <button onclick="handlePatternClick('glider')">Glider</button>
-                    <button onclick="handlePatternClick('pulsar')">Pulsar</button>
-                    <button onclick="handlePatternClick('gosper')">Gosper Glider Gun</button>
-                </div>
+    <div class="gol-controls">
+        <button onclick="handlePatternClick('random')">Random</button>
+        <button onclick="handlePatternClick('glider')">Glider</button>
+        <button onclick="handlePatternClick('pulsar')">Pulsar</button>
+        <button onclick="handlePatternClick('gosper')">Gosper Glider Gun</button>
+    </div>
 
-                <div class="gol-description">
-                    <h2>What is Conway's Game of Life?</h2>
-                    <p>
-                        Conway's Game of Life is a cellular automaton devised by British mathematician John Conway in 1970. 
-                        It consists of a grid of cells that can be either alive or dead. The state of each cell in the next generation 
-                        depends on the state of its eight neighbors, following these rules:
-                    </p>
-                    <ul>
-                        <li>Any live cell with two or three neighbors survives.</li>
-                        <li>Any dead cell with exactly three neighbors becomes alive.</li>
-                        <li>All other live cells die in the next generation.</li>
-                    </ul>
-                    <p>
-                        Despite its simple rules, the Game of Life can produce remarkably complex behaviors, 
-                        leading to patterns that oscillate, move, or even replicate themselves.
+    <div class="gol-description">
+        <h2>What is Conway's Game of Life?</h2>
+        <p>
+            Conway's Game of Life is a cellular automaton devised by British mathematician John Conway in 1970. 
+            It consists of a grid of cells that can be either alive or dead. The state of each cell in the next generation 
+            depends on the state of its eight neighbors, following these rules:
+        </p>
+        <ul>
+            <li>Any live cell with two or three neighbors survives.</li>
+            <li>Any dead cell with exactly three neighbors becomes alive.</li>
+            <li>All other live cells die in the next generation.</li>
+        </ul>
+        <p>
+            Despite its simple rules, the Game of Life can produce remarkably complex behaviors, 
+            leading to patterns that oscillate, move, or even replicate themselves.
 
-                        If you want to investigate more about this cool concept check out the Github repository i made for a comprehensive Cellular automata simulator!
-                    </p>
-                </div>
-
-        </section>
+            If you want to investigate more about this cool concept check out the Github repository i made for a comprehensive Cellular automata simulator!
+        </p>
+    </div>
+</section>
 
         
     <script>

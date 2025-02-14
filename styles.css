@@ -43,44 +43,27 @@ header {
     border-bottom: 5px solid #c7e0ff; 
 }
 
-/* Standard nav layout */
 nav {
     display: flex;
     justify-content: center;
     gap: 2em;
-    background: linear-gradient(to bottom, #6c95b3,  #adc9e4, #6c95b3);
+    background: linear-gradient(to bottom, #6c95b3,  #adc9e4, #6c95b3); 
     padding: 1em 0;
-    border-bottom: 5px solid #a8c9ff;
-    flex-wrap: wrap; /* Allow items to wrap */
+    border-bottom: 5px solid #a8c9ff; 
 }
 
 nav a {
-    color: #3a3a3a;
+    color: #3a3a3a; 
     text-decoration: none;
     padding: 0.5em 1em;
-    background: linear-gradient(to bottom,  #adc9e4, #a8c9ff);
+    background: linear-gradient(to bottom,  #adc9e4, #a8c9ff); 
     transition: background-color 0.3s, color 0.3s;
     border-radius: 20px;
 }
 
-/* Hover effects for nav links */
 nav a:hover {
     background: linear-gradient(to bottom, #a8c9ff, #8ba7cc);
-    color: #e0f7fa;
-}
-
-/* Adjust nav items on small screens */
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column; /* Stack nav items vertically */
-        align-items: center; /* Center them */
-        padding: 1em 0; /* Adjust padding */
-    }
-
-    nav a {
-        padding: 1em; /* Add more padding on small screens */
-        margin: 0.5em 0; /* Add some space between buttons */
-    }
+    color: #e0f7fa; 
 }
 
 footer {

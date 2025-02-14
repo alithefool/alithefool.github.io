@@ -30,15 +30,224 @@
             <a href="Contact.html">Contact</a>
         </nav>
 
-        <section id="projects">
-            <h2>Personal Gallery</h2>
-            <article>
-                <h3>uuuuuh idk put something visual here</h3>
-                <p>Description of the project.</p>
-                <a href="#">View Project</a>
-            </article>
-        </section>
 
+    <div class="container">
+        <section id="projects">
+            <section id="game-of-life">
+                <div class="gol-title">Conway's Game of Life</div>
+
+                <div class="canvas-container">
+                    <canvas id="gameCanvas" width="1000" height="1000"></canvas>
+                </div>
+
+                <div class="gol-controls">
+                    <button onclick="handlePatternClick('random')">Random</button>
+                    <button onclick="handlePatternClick('glider')">Glider</button>
+                    <button onclick="handlePatternClick('pulsar')">Pulsar</button>
+                    <button onclick="handlePatternClick('gosper')">Gosper Glider Gun</button>
+                </div>
+
+                <div class="gol-description">
+                    <h2>What is Conway's Game of Life?</h2>
+                    <p>
+                        Conway's Game of Life is a cellular automaton devised by British mathematician John Conway in 1970. 
+                        It consists of a grid of cells that can be either alive or dead. The state of each cell in the next generation 
+                        depends on the state of its eight neighbors, following these rules:
+                    </p>
+                    <ul>
+                        <li>Any live cell with two or three neighbors survives.</li>
+                        <li>Any dead cell with exactly three neighbors becomes alive.</li>
+                        <li>All other live cells die in the next generation.</li>
+                    </ul>
+                    <p>
+                        Despite its simple rules, the Game of Life can produce remarkably complex behaviors, 
+                        leading to patterns that oscillate, move, or even replicate themselves.
+
+                        If you want to investigate more about this cool concept check out the Github repository i made for a comprehensive Cellular automata simulator!
+                    </p>
+                </div>
+            </section>
+        </section>
+    </div>
+        
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+
+        const cellSize = 10;
+        const canvasWidth = 1000;
+        const canvasHeight = 1000;
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+
+        const rows = Math.floor(canvasHeight / cellSize);
+        const cols = Math.floor(canvasWidth / cellSize);
+
+        let grid = createGrid();
+        let history = [];
+        let isRunning = true;
+        let scrambling = false;
+        let patternToLoad = null;
+
+        function createGrid() {
+            let grid = new Array(rows);
+            for (let r = 0; r < rows; r++) {
+                grid[r] = new Array(cols).fill(0);
+            }
+            return grid;
+        }
+
+        function randomizeGrid() {
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    grid[r][c] = Math.random() > 0.85 ? 1 : 0;
+                }
+            }
+        }
+
+        function drawGrid() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    ctx.fillStyle = grid[r][c] ? '#00aaff' : '#b0c4d4';
+                    ctx.fillRect(c * cellSize, r * cellSize, cellSize, cellSize);
+                }
+            }
+        }
+
+        function updateGrid() {
+            let newGrid = createGrid();
+            for (let r = 0; r < rows; r++) {
+                for (let c = 0; c < cols; c++) {
+                    const neighbors = countNeighbors(r, c);
+                    if (grid[r][c] === 1) {
+                        newGrid[r][c] = neighbors === 2 || neighbors === 3 ? 1 : 0;
+                    } else {
+                        newGrid[r][c] = neighbors === 3 ? 1 : 0;
+                    }
+                }
+            }
+            grid = newGrid;
+        }
+
+        function countNeighbors(row, col) {
+            let count = 0;
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    if (i === 0 && j === 0) continue;
+                    const x = row + i;
+                    const y = col + j;
+                    if (x >= 0 && x < rows && y >= 0 && y < cols) {
+                        count += grid[x][y];
+                    }
+                }
+            }
+            return count;
+        }
+
+        function checkStability() {
+            const gridString = JSON.stringify(grid);
+            if (history.includes(gridString)) {
+                return true;
+            }
+            history.push(gridString);
+            if (history.length > 10) history.shift();
+            return false;
+        }
+
+        function scrambleGrid(callback) {
+            scrambling = true;
+            let scrambleDuration = 500;
+            let startTime = Date.now();
+
+            function scrambleAnimation() {
+                if (Date.now() - startTime < scrambleDuration) {
+                    for (let r = 0; r < rows; r++) {
+                        for (let c = 0; c < cols; c++) {
+                            grid[r][c] = Math.random() > 0.5 ? 1 : 0;
+                        }
+                    }
+                    drawGrid();
+                    requestAnimationFrame(scrambleAnimation);
+                } else {
+                    scrambling = false;
+                    if (patternToLoad) {
+                        loadPattern(patternToLoad);
+                        patternToLoad = null;
+                    }
+                    if (callback) callback();
+                }
+            }
+
+            scrambleAnimation();
+        }
+
+        function loadPattern(pattern) {
+            grid = createGrid();
+            history = [];
+            
+            if (pattern === 'random') {
+                randomizeGrid();
+            } else if (pattern === 'glider') {
+                grid[1][2] = 1;
+                grid[2][3] = 1;
+                grid[3][1] = 1;
+                grid[3][2] = 1;
+                grid[3][3] = 1;
+            } else if (pattern === 'pulsar') {
+                let startX = 10;
+                let startY = 10;
+                let offsets = [1, 2, 3, 7, 8, 9];
+                offsets.forEach(offset => {
+                    grid[startY + offset][startX + 0] = 1;
+                    grid[startY + offset][startX + 5] = 1;
+                    grid[startY + 0][startX + offset] = 1;
+                    grid[startY + 5][startX + offset] = 1;
+                    grid[startY + offset][startX + 7] = 1;
+                    grid[startY + offset][startX + 12] = 1;
+                    grid[startY + 7][startX + offset] = 1;
+                    grid[startY + 12][startX + offset] = 1;
+                });
+            } else if (pattern === 'gosper') {
+                let startX = 5;
+                let startY = 5;
+                let gosperPattern = [
+                    [0, 4], [0, 5], [1, 4], [1, 5],
+                    [10, 4], [10, 5], [10, 6], [11, 3], [11, 7], [12, 2], [12, 8], [13, 2], [13, 8], [14, 5],
+                    [15, 3], [15, 7], [16, 4], [16, 5], [16, 6], [17, 5],
+                    [20, 2], [20, 3], [20, 4], [21, 2], [21, 3], [21, 4],
+                    [22, 1], [22, 5], [24, 0], [24, 1], [24, 5], [24, 6],
+                    [34, 2], [34, 3], [35, 2], [35, 3]
+                ];
+                gosperPattern.forEach(([dx, dy]) => {
+                    grid[startY + dy][startX + dx] = 1;
+                });
+            }
+        }
+
+        function handlePatternClick(pattern) {
+            patternToLoad = pattern;
+            scrambleGrid();
+        }
+
+        function gameLoop() {
+            if (isRunning && !scrambling) {
+                drawGrid();
+                updateGrid();
+                if (checkStability()) {
+                    patternToLoad = 'random';
+                    scrambleGrid();
+                }
+            } else {
+                drawGrid();
+            }
+            requestAnimationFrame(gameLoop);
+        }
+
+        randomizeGrid();
+        gameLoop();
+    </script>
+    
         <section id="projects">
             <h2>Personal Gallery</h2>
             <article>
